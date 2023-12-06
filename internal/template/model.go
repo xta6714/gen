@@ -40,3 +40,4 @@ func ({{.GetBaseStructTmpl}}){{.MethodName}}({{.GetParamInTmpl}})({{.GetResultPa
 {{ if len .GetBaseStructTmpl 0}}
 func {{.MethodName}}({{.GetParamInTmpl}})({{.GetResultParamInTmpl}}){{.Body}}
 {{end}}
+`

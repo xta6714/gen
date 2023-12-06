@@ -9,7 +9,7 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/utils/tests"
 
-	"gorm.io/gen/internal/model"
+	"github.com/xta6714/gen/internal/model"
 )
 
 // GenerateMode generate mode

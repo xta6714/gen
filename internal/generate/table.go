@@ -6,7 +6,7 @@ import (
 
 	"gorm.io/gorm"
 
-	"gorm.io/gen/internal/model"
+	"github.com/xta6714/gen/internal/model"
 )
 
 // ITableInfo table info interface

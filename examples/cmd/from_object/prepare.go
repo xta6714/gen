@@ -3,8 +3,8 @@ package main
 import (
 	"strings"
 
-	"gorm.io/gen/field"
-	"gorm.io/gen/helper"
+	"github.com/xta6714/gen/field"
+	"github.com/xta6714/gen/helper"
 )
 
 var _ helper.Object = new(Demo)
