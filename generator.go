@@ -489,6 +489,7 @@ func (g *Generator) generateModelFile() error {
 			var buf bytes.Buffer
 			err := render(tmpl.Model, &buf, data)
 			if err != nil {
+				fmt.Println(err)
 				errChan <- err
 				return
 			}
@@ -496,6 +497,7 @@ func (g *Generator) generateModelFile() error {
 			for _, method := range data.ModelMethods {
 				err = render(tmpl.ModelMethod, &buf, method)
 				if err != nil {
+					fmt.Println(err)
 					errChan <- err
 					return
 				}
@@ -504,6 +506,7 @@ func (g *Generator) generateModelFile() error {
 			modelFile := modelOutPath + data.FileName + ".gen.go"
 			err = g.output(modelFile, buf.Bytes())
 			if err != nil {
+				fmt.Println(err)
 				errChan <- err
 				return
 			}
