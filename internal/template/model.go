@@ -33,11 +33,11 @@ type {{.ModelStructName}} struct {
 
 // ModelMethod model struct DIY method
 const ModelMethod = `
+func init(){
+
+}
 
 {{if .Doc -}}// {{.DocComment -}}{{end}}
 func ({{.GetBaseStructTmpl}}){{.MethodName}}({{.GetParamInTmpl}})({{.GetResultParamInTmpl}}){{.Body}}
-
-{{ if len .GetBaseStructTmpl 0}}
-func {{.MethodName}}({{.GetParamInTmpl}})({{.GetResultParamInTmpl}}){{.Body}}
-{{end}}
+ 
 `
