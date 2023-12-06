@@ -1,3 +1,4 @@
+fork from gorm.io/gen
 # GORM Gen
 
 Friendly & Safer GORM powered by Code Generation.
