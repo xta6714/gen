@@ -1,4 +1,4 @@
-module gorm.io/gen
+module github.com/xta6714/gen
 
 go 1.18
 
