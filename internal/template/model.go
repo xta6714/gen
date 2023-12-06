@@ -11,6 +11,8 @@ import (
 	"gorm.io/datatypes"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
+	"github.com/asaskevich/EventBus"
+	"go-code-x/global"
 	{{range .ImportPkgPaths}}{{.}} ` + "\n" + `{{end}}
 )
 
@@ -34,7 +36,12 @@ type {{.ModelStructName}} struct {
 // ModelMethod model struct DIY method
 const ModelMethod = `
 func init(){
-
+	if global.Bus == nil {
+		global.Bus = EventBus.New()
+	}
+	global.Bus.Subscribe(global.DBInitiatedEvent, func() {
+	 global.GVA_DB.AutoMigrate({{.ModelStructName}}{})
+	})
 }
 
 {{if .Doc -}}// {{.DocComment -}}{{end}}
