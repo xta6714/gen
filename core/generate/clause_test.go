@@ -3,7 +3,7 @@ package generate
 import (
 	"testing"
 
-	"github.com/xta6714/gen/internal/parser"
+	"github.com/xta6714/gen/core/parser"
 )
 
 func checkBuildExpr(t *testing.T, SQL string, splitResult, generateResult []string, i *InterfaceMethod) {

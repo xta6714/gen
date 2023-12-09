@@ -20,12 +20,12 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
 
+	"github.com/xta6714/gen/core/generate"
+	"github.com/xta6714/gen/core/model"
+	"github.com/xta6714/gen/core/parser"
+	tmpl "github.com/xta6714/gen/core/template"
+	"github.com/xta6714/gen/core/utils/pools"
 	"github.com/xta6714/gen/helper"
-	"github.com/xta6714/gen/internal/generate"
-	"github.com/xta6714/gen/internal/model"
-	"github.com/xta6714/gen/internal/parser"
-	tmpl "github.com/xta6714/gen/internal/template"
-	"github.com/xta6714/gen/internal/utils/pools"
 )
 
 // T generic type

@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/xta6714/gen/internal/model"
-	"github.com/xta6714/gen/internal/parser"
+	"github.com/xta6714/gen/core/model"
+	"github.com/xta6714/gen/core/parser"
 )
 
 // InterfaceMethod interface's method

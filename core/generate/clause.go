@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/xta6714/gen/internal/model"
+	"github.com/xta6714/gen/core/model"
 )
 
 // Clause a symbol of clause, it can be sql condition clause, if clause, where clause, set clause and else clause
