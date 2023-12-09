@@ -57,7 +57,7 @@ func NewGenerator(cfg Config) *Generator {
 	return &Generator{
 		Config: cfg,
 		Data:   make(map[string]*genInfo),
-		models: make(map[string]*generate.QueryStructMeta),
+		Models: make(map[string]*generate.QueryStructMeta),
 	}
 }
 
@@ -90,7 +90,7 @@ type Generator struct {
 	Config
 
 	Data   map[string]*genInfo                  //gen query data
-	models map[string]*generate.QueryStructMeta //gen model data
+	Models map[string]*generate.QueryStructMeta //gen model data
 }
 
 // UseDB set db connection
@@ -121,7 +121,7 @@ func (g *Generator) GenerateModelAs(tableName string, modelName string, opts ...
 		g.info(fmt.Sprintf("ignore table <%s>", tableName))
 		return nil
 	}
-	g.models[meta.ModelStructName] = meta
+	g.Models[meta.ModelStructName] = meta
 
 	g.info(fmt.Sprintf("got %d columns from table <%s>", len(meta.Fields), meta.TableName))
 	return meta
@@ -149,7 +149,7 @@ func (g *Generator) GenerateModelFrom(obj helper.Object) *generate.QueryStructMe
 	if err != nil {
 		panic(fmt.Errorf("generate struct from object fail: %w", err))
 	}
-	g.models[s.ModelStructName] = s
+	g.Models[s.ModelStructName] = s
 
 	g.info(fmt.Sprintf("parse object %s", obj.StructName()))
 	return s
@@ -207,7 +207,7 @@ func (g *Generator) genModelObjConfig() *model.Config {
 	}
 }
 
-// ApplyBasic specify models which will implement basic .diy_method
+// ApplyBasic specify Models which will implement basic .diy_method
 func (g *Generator) ApplyBasic(models ...interface{}) {
 	g.ApplyInterface(func() {}, models...)
 }
@@ -463,7 +463,7 @@ func (g *Generator) generateQueryUnitTestFile(data *genInfo) (err error) {
 
 // generateModelFile generate model structures and save to file
 func (g *Generator) generateModelFile() error {
-	if len(g.models) == 0 {
+	if len(g.Models) == 0 {
 		return nil
 	}
 
@@ -478,7 +478,7 @@ func (g *Generator) generateModelFile() error {
 
 	errChan := make(chan error)
 	pool := pools.NewPool(concurrent)
-	for _, data := range g.models {
+	for _, data := range g.Models {
 		if data == nil || !data.Generated {
 			continue
 		}
