@@ -58,6 +58,7 @@ func NewGenerator(cfg Config) *Generator {
 		Config: cfg,
 		Data:   make(map[string]*genInfo),
 		Models: make(map[string]*generate.QueryStructMeta),
+		Tables: make(map[string]*generate.QueryStructMeta),
 	}
 }
 
@@ -91,6 +92,7 @@ type Generator struct {
 
 	Data   map[string]*genInfo                  //gen query data
 	Models map[string]*generate.QueryStructMeta //gen model data
+	Tables map[string]*generate.QueryStructMeta //gen model data
 }
 
 // UseDB set db connection
@@ -122,6 +124,7 @@ func (g *Generator) GenerateModelAs(tableName string, modelName string, opts ...
 		return nil
 	}
 	g.Models[meta.ModelStructName] = meta
+	g.Tables[meta.TableName] = meta
 
 	g.info(fmt.Sprintf("got %d columns from table <%s>", len(meta.Fields), meta.TableName))
 	return meta
