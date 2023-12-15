@@ -123,6 +123,7 @@ func (g *Generator) GenerateModelAs(tableName string, modelName string, opts ...
 		g.info(fmt.Sprintf("ignore table <%s>", tableName))
 		return nil
 	}
+
 	g.Models[meta.ModelStructName] = meta
 	g.Tables[meta.TableName] = meta
 
@@ -578,9 +579,10 @@ func (g *Generator) output(fileName string, content []byte) error {
 
 func (g *Generator) pushQueryStructMeta(meta *generate.QueryStructMeta) (*genInfo, error) {
 	structName := meta.ModelStructName
-	if g.Data[structName] == nil {
-		g.Data[structName] = &genInfo{QueryStructMeta: meta}
-	}
+	//if g.Data[structName] == nil {
+	//	g.Data[structName] = &genInfo{QueryStructMeta: meta}
+	//}
+	g.Data[structName] = &genInfo{QueryStructMeta: meta}
 	if g.Data[structName].Source != meta.Source {
 		return nil, fmt.Errorf("cannot generate struct with the same name from different source:%s.%s and %s.%s",
 			meta.StructInfo.Package, meta.ModelStructName, g.Data[structName].StructInfo.Package, g.Data[structName].ModelStructName)
