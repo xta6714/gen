@@ -169,8 +169,8 @@ type Field struct {
 	ColumnName       string
 	ColumnComment    string
 	MultilineComment bool
-	Tag              field.Tag
-	GORMTag          field.GormTag
+	Tag              field.Tag     //json tag
+	GORMTag          field.GormTag //gorm tag
 	CustomGenType    string
 	Relation         *field.Relation
 }

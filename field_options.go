@@ -3,6 +3,7 @@ package gen
 import (
 	"reflect"
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/xta6714/gen/core/generate"
@@ -131,21 +132,22 @@ var (
 	// FieldJSONTag specify JSON tag
 	FieldJSONTag = func(columnName string, jsonTag string) model.ModifyFieldOpt {
 		return func(m *model.Field) *model.Field {
-			if m.ColumnName == columnName && m.Type == "int64" {
-				m.Tag.Set(field.TagKeyJson, jsonTag+",string")
-			} else if m.ColumnName == columnName {
+			if m.ColumnName == columnName {
 				m.Tag.Set(field.TagKeyJson, jsonTag)
 			}
 			return m
 		}
 	}
+
 	// FieldJSONTagWithNS specify JSON tag with name strategy
 	FieldJSONTagWithNS = func(schemaName func(columnName string) (tagContent string)) model.ModifyFieldOpt {
 		return func(m *model.Field) *model.Field {
+			var required = strconv.FormatBool(strings.Contains(m.GORMTag.Build(), "not null"))
+
 			if schemaName != nil && m.Type == "int64" {
-				m.Tag.Set(field.TagKeyJson, schemaName(m.ColumnName)+",string")
+				m.Tag.Set(field.TagKeyJson, schemaName(m.ColumnName)+",string"+","+required)
 			} else if schemaName != nil {
-				m.Tag.Set(field.TagKeyJson, schemaName(m.ColumnName))
+				m.Tag.Set(field.TagKeyJson, schemaName(m.ColumnName+","+required))
 			}
 			return m
 		}
