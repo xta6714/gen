@@ -142,7 +142,7 @@ var (
 	FieldJSONTagWithNS = func(schemaName func(columnName string) (tagContent string)) model.ModifyFieldOpt {
 		return func(m *model.Field) *model.Field {
 			var required = strings.Contains(m.GORMTag.Build(), "not null")
-			jsonTag := schemaName(m.Name)
+			jsonTag := schemaName(m.ColumnName)
 			if schemaName != nil {
 				if required {
 					jsonTag += ",required"
