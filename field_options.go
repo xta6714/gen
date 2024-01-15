@@ -132,7 +132,7 @@ var (
 	FieldJSONTag = func(columnName string, jsonTag string) model.ModifyFieldOpt {
 		return func(m *model.Field) *model.Field {
 			if m.ColumnName == columnName {
-				m.Tag.Set(field.TagKeyJson, m.Name)
+				m.Tag.Set(field.TagKeyJson, jsonTag)
 			}
 			return m
 		}
