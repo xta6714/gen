@@ -247,7 +247,7 @@ func (g *Generator) apply(fc interface{}, structs []*generate.QueryStructMeta) {
 		}
 		interfaceStructMeta.ReviseFieldNameFor(model.DOKeywords)
 
-		genInfo, err := g.pushQueryStructMeta(interfaceStructMeta)
+		genInfo, err := g.PushQueryStructMeta(interfaceStructMeta)
 		if err != nil {
 			g.db.Logger.Error(context.Background(), "gen struct fail: %v", err)
 			panic("gen struct fail")
@@ -577,7 +577,7 @@ func (g *Generator) output(fileName string, content []byte) error {
 	return ioutil.WriteFile(fileName, result, 0640)
 }
 
-func (g *Generator) pushQueryStructMeta(meta *generate.QueryStructMeta) (*genInfo, error) {
+func (g *Generator) PushQueryStructMeta(meta *generate.QueryStructMeta) (*genInfo, error) {
 	structName := meta.ModelStructName
 	//if g.Data[structName] == nil {
 	//	g.Data[structName] = &genInfo{QueryStructMeta: meta}
