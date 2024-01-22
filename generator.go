@@ -387,6 +387,10 @@ func (g *Generator) generateQueryFile() (err error) {
 func (g *Generator) generateSingleQueryFile(data *genInfo) (err error) {
 	var buf bytes.Buffer
 
+	if data.Fields == nil {
+		return nil
+	}
+
 	structPkgPath := data.StructInfo.PkgPath
 	if structPkgPath == "" {
 		structPkgPath = g.modelPkgPath
