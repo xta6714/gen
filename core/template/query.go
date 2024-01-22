@@ -2,6 +2,15 @@ package template
 
 // DefaultQuery default query
 const DefaultQuery = `
+func init(){
+	if global.Bus == nil {
+		global.Bus = EventBus.New()
+	}
+	global.Bus.Subscribe(global.DBInitiatedEvent, func() {
+	 	SetDefault(global.GVA_DB)
+	})
+}
+
 var (
 	Q =new(Query)
 	{{range $name,$d :=.Data -}}
