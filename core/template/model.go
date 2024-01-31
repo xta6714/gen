@@ -26,7 +26,7 @@ type {{.ModelStructName}} struct {
 {{.ColumnComment}}
     */
 	{{end -}}
-    {{.Name}} {{.Type}} ` + "`{{.Tags}}` " +
+    {{.Name}} {{if eq .ModelStructName .Type-}} *{{.Type}} {{else}} {{.Type}} {{end}}` + "`{{.Tags}}` " +
 	"{{if not .MultilineComment}}{{if .ColumnComment}}// {{.ColumnComment}}{{end}}{{end}}" +
 	`{{end}}
 }
