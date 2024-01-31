@@ -17,6 +17,7 @@ import (
 )
 
 {{if .TableName -}}const TableName{{.ModelStructName}} = "{{.TableName}}"{{- end}}
+{{$StructName :=.ModelStructName}}
 
 // {{.ModelStructName}} {{.StructComment}}
 type {{.ModelStructName}} struct {
@@ -26,7 +27,7 @@ type {{.ModelStructName}} struct {
 {{.ColumnComment}}
     */
 	{{end -}}
-    {{.Name}} {{if eq .ModelStructName .Type}} *{{.Type}} {{else}} {{.Type}} {{end}}` + "`{{.Tags}}` " +
+    {{.Name}} {{if eq $StructName .Type}} *{{.Type}} {{else}} {{.Type}} {{end}}` + "`{{.Tags}}` " +
 	"{{if not .MultilineComment}}{{if .ColumnComment}}// {{.ColumnComment}}{{end}}{{end}}" +
 	`{{end}}
 }
