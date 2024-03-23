@@ -7,7 +7,7 @@ func init(){
 		global.Bus = EventBus.New()
 	}
 	global.Bus.Subscribe(global.DBInitiatedEvent, func() {
-	 	SetDefault(global.GVA_DB)
+	 	SetDefault(global.DB)
 	})
 }
 

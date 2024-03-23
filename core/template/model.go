@@ -41,7 +41,7 @@ func init(){
 		global.Bus = EventBus.New()
 	}
 	global.Bus.Subscribe(global.DBInitiatedEvent, func() {
-	 global.GVA_DB.AutoMigrate({{.Receiver.Type}}{})
+	 global.DB.AutoMigrate({{.Receiver.Type}}{})
 	})
 }
 
