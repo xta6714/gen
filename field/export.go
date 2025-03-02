@@ -32,6 +32,10 @@ func NewField(table, column string, opts ...Option) Field {
 	return Field{expr: expr{col: toColumn(table, column, opts...)}}
 }
 
+func NewRawField(table, column string, opts ...Option) Field {
+	return Field{expr: expr{col: toColumn(table, column, opts...)}}
+}
+
 // NewSerializer create new field2
 func NewSerializer(table, column string, opts ...Option) Serializer {
 	return Serializer{expr: expr{col: toColumn(table, column, opts...)}}
